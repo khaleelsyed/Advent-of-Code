@@ -1,21 +1,11 @@
-
-
 with open('input.txt') as f:
-	data = f.readlines()
+	data = [int(i) for i in f.read().splitlines()]
 	
-counter = 0
-prev = None
-for current in data:
-	current = int(current)
-	try:
-		if current > prev:
-			counter += 1
-	
-	except TypeError as e:
-		if str(e) != "'>' not supported between instances of 'int' and 'NoneType'":
-			raise e
-	
-	finally:
-		prev = current
+increases = 0
+prev = data[0]
+for current in data[1:]:
+	if current > prev:
+		increases += 1
+	prev = current
 
-print(counter)
+print(increases)
